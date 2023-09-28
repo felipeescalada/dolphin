@@ -29,10 +29,7 @@ app.use(function(req, res, next) {
 
 
 
-// sendFile will go here
-app.get('/web', function(req, res) {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
+
 
 app.get('/', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM users')

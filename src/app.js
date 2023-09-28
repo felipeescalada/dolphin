@@ -3,6 +3,10 @@ import { pool } from './db.js'
 import {PORT} from './config.js'
 
 const app = express()
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://dolphin-production.up.railway.app/'
+}));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
@@ -18,6 +22,11 @@ app.get('/ping', async (req, res) => {
   const [result] = await pool.query(`SELECT "hello world" as RESULT`);
   res.json(result[0])
 })
+app.get('/ping23', async (req, res) => {
+  const [result] = await pool.query(`SELECT "ERP Dolphin 2.0" as RESULT`);
+  res.json(result[0])
+})
+
 
 app.get('/create', async (req, res) => {
   const result = await pool.query('INSERT INTO users(name) VALUES ("John")')

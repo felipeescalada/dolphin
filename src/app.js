@@ -1,7 +1,7 @@
 import express from 'express'
 import { pool } from './db.js'
 import {PORT} from './config.js'
-
+const path = require('path');
 const app = express()
 const corsOptions = {
   origin(origin, callback) {
@@ -25,6 +25,15 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+
+
+
+// sendFile will go here
+app.get('/web', function(req, res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
+});
+
 app.get('/', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM users')
   res.json(rows)

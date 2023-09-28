@@ -1,14 +1,8 @@
 import express from 'express'
 import { pool } from './db.js'
 import {PORT} from './config.js'
-const path = require('path');
+
 const app = express()
-const corsOptions = {
-  origin(origin, callback) {
-    callback(null, true);
-  },
-  credentials: true
-};
 //cross domain.
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -18,13 +12,6 @@ var allowCrossDomain = function(req, res, next) {
 }
 
 app.use(allowCrossDomain);
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 
 

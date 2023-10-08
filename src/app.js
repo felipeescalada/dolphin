@@ -4,6 +4,11 @@ import { pool } from './db.js';
 import {PORT} from './config.js';
 
 const app = express()
+
+app.configure(function(){
+  app.use(express.bodyParser());
+});
+
 //cross domain.
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

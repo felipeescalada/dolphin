@@ -27,6 +27,12 @@ app.post('/api/getusuario', async (req, res) => {
   res.json(rows);
 });
 
+app.post('/api/usuarios', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM user');
+  res.json(rows);
+});
+
+
 app.get('/alumnos2', (req, res) => {
   
   pool.getConnection((err, connection) => {
@@ -44,7 +50,7 @@ app.get('/alumnos2', (req, res) => {
   });
 });
 
-app.get('/usuarios', (req, res) => {
+app.get('/usuarios2', (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log(`usuarios ${connection.threadId}`);

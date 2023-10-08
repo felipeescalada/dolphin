@@ -64,7 +64,10 @@ app.get('/usuarios2', (req, res) => {
   });
 });
 
-
+app.post('/api/getusuario', async (req, res) => {
+  const [rows] = await pool.query(`SELECT * FROM user WHERE Username="${req.body.usuario}"`)
+  res.json(rows)
+});
 
 
 app.post('/api/getusuario2', (req, res) => {

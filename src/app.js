@@ -89,9 +89,10 @@ app.get('/usuarios2', (req, res) => {
   });
 });
 
-app.post('/api/getusuario23', (req, res) => {
+app.post('/api/getusuario23', async (req, res) => {
+
+  const [rows] =  await pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
   logger.log("info", "Request received en el body:"  + req.body ,   req.body.usuario +"//" + req.body);
-  const [rows] =  pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
   res.json(rows);
   //res.send({ status: req.body });
 });

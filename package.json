@@ -12,8 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
-    "mysql2": "^2.3.3"
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

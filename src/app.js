@@ -94,7 +94,7 @@ app.post('/api/getusuario23', async (req, res) => {
   const [rows] =  await pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
   logger.log({
     level: 'info',
-    message: 'Hello distributed log files!'
+    message: 'Hello distributed log files!' + req.body
   });
   res.json(rows);
   //res.send({ status: req.body });

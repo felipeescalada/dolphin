@@ -9,9 +9,9 @@ import {PORT} from './config.js';
 const app = express();
 
 
-
+logger.log("info", "Request received en el body:",   "1");
 app.use(bodyParser.json);
-
+logger.log("info", "Request received en el body:",   "2");
 
 //app.use(bodyParser.urlencoded({ extended: true }))
 

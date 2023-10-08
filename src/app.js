@@ -13,7 +13,54 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
+//felipe cambios domingo 08 oct 2023.
 
+app.get('/alumnos', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log(`#-Conectado como el ID ${connection.threadId}`);
+
+    connection.query('select idAlumno,Nombre,Apellido,last_update,substring(FechaNac,1,10) FechaNac,'+
+    ' idSede,idCurso,Estado,Email,Sexo,coalesce(idprovincia,0) idprovincia,' +
+    ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos', (err, rows) => {
+      connection.release(); // Devolver la conexión al pool
+
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+});
+
+app.get('/usuarios', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log(`usuarios ${connection.threadId}`);
+
+    connection.query('SELECT * FROM user', (err, rows) => {
+      connection.release(); // Devolver la conexión al pool
+
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+});
+
+app.post('/api/getusuario', (req, res) => {
+  pool.getConnection((err, connection) => {
+
+    console.log(`SELECT * FROM user WHERE Username="${req.body.usuario}"`);
+    if (err) throw err;
+    // console.log(`usuarios ${connection.threadId}`);
+    // console.log('usuarios:' + req.body.usuario);
+    connection.query(`SELECT * FROM user WHERE Username="${req.body.usuario}"`, (err, rows) => {
+      connection.release(); // Devolver la conexión al pool
+
+      if (err) throw err;
+      res.send(rows);
+    });
+  });
+});
+//
 
 
 

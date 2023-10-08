@@ -74,9 +74,9 @@ app.get('/usuarios2', (req, res) => {
 });
 
 app.post('/api/getusuario23', (req, res) => {
-  console.log(req.body);
+  logger.log("info", "Request received: ", req);
   //const [rows] = await pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
-  res.json(req.body);
+  //res.json(req.body);
 });
 
 

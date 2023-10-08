@@ -1,7 +1,7 @@
-import express from 'express'
-import winston from 'winston'
-import { pool } from './db.js'
-import {PORT} from './config.js'
+import express from 'express';
+import winston from 'winston';
+import { pool } from './db.js';
+import {PORT} from './config.js';
 
 const app = express()
 //cross domain.
@@ -11,8 +11,8 @@ var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 }
-const winston2 = winston();
-const logger = winston2.createLogger({
+//const winston2 = winston();
+const logger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
   transports: [

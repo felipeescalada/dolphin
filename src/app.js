@@ -23,7 +23,7 @@ app.get('/alumnos', async (req, res) => {
 })
 
 app.post('/api/getusuario', async (req, res) => {
-  const [rows] = await pool.query('SELECT * FROM user WHERE Username="${req.body.usuario}"');
+  const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
   res.json(rows);
 });
 

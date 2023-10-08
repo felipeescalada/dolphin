@@ -15,7 +15,15 @@ app.use(allowCrossDomain);
 
 //felipe cambios domingo 08 oct 2023.
 
-app.get('/alumnos', (req, res) => {
+app.get('/alumnos', async (req, res) => {
+  const [rows] = await pool.query('select idAlumno,Nombre,Apellido,last_update,substring(FechaNac,1,10) FechaNac,'+
+  ' idSede,idCurso,Estado,Email,Sexo,coalesce(idprovincia,0) idprovincia,' +
+  ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos')
+  res.json(rows)
+})
+
+app.get('/alumnos2', (req, res) => {
+  
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log(`#-Conectado como el ID ${connection.threadId}`);
@@ -69,6 +77,7 @@ app.get('/', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM users')
   res.json(rows)
 })
+
 
 app.get('/ping', async (req, res) => {
   const [result] = await pool.query(`SELECT "Server Dolphin ERP" as RESULT`);

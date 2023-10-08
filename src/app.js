@@ -10,7 +10,7 @@ const app = express();
 
 
 
-app.use(bodyParser.json());
+app.use(require('connect').bodyParser());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //cross domain.

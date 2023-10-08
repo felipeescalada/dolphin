@@ -1,10 +1,11 @@
 import express from 'express';
 import winston from 'winston';
+import bodyParser from 'body-parser';
 import { pool } from './db.js';
 import {PORT} from './config.js';
 
 
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 const app = express();
 
 

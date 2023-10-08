@@ -3,11 +3,13 @@ import winston from 'winston';
 import { pool } from './db.js';
 import {PORT} from './config.js';
 
-const app = express()
 
-app.configure(function(){
-  app.use(express.bodyParser());
-});
+var bodyParser = require('body-parser');
+const app = express();
+
+
+
+app.use(bodyParser.json());
 
 //cross domain.
 var allowCrossDomain = function(req, res, next) {

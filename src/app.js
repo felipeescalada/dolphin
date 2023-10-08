@@ -71,7 +71,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/ping', async (req, res) => {
-  const [result] = await pool.query(`SELECT "hello world" as RESULT`);
+  const [result] = await pool.query(`SELECT "Server Dolphin ERP" as RESULT`);
   res.json(result[0])
 })
 app.get('/ping23', async (req, res) => {

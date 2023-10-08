@@ -10,6 +10,15 @@ var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 }
+const winston = require("winston");
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "logs/app.log" }),
+  ],
+});
 
 app.use(allowCrossDomain);
 

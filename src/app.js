@@ -18,9 +18,14 @@ app.use(allowCrossDomain);
 app.get('/alumnos', async (req, res) => {
   const [rows] = await pool.query('select idAlumno,Nombre,Apellido,last_update,substring(FechaNac,1,10) FechaNac,'+
   ' idSede,idCurso,Estado,Email,Sexo,coalesce(idprovincia,0) idprovincia,' +
-  ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos')
-  res.json(rows)
+  ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos');
+  res.json(rows);
 })
+
+app.post('/api/getusuario', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM user WHERE Username="${req.body.usuario}"');
+  res.json(rows);
+});
 
 app.get('/alumnos2', (req, res) => {
   

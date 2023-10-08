@@ -10,8 +10,9 @@ const app = express();
 
 
 
+app.use(bodyParser.json)
 
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 
 //cross domain.
 var allowCrossDomain = function(req, res, next) {

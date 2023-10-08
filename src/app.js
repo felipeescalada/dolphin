@@ -30,9 +30,9 @@ const logger = winston.createLogger({
 });
 
 
-logger.log("info", "Request received en el body:",   "1");
-app.use(bodyParser.json);
-logger.log("info", "Request received en el body:",   "2");
+logger.log("info", "Request received en el body 1:",   "1");
+app.use(bodyParser.json());
+logger.log("info", "Request received en el body 2:",   "2");
 
 app.use(allowCrossDomain);
 

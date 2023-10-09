@@ -1,15 +1,40 @@
-import express from 'express'
-import { pool } from './db.js'
-import {PORT} from './config.js'
+import express from 'express';
+import winston from 'winston';
+import bodyParser from 'body-parser';
+import { pool } from './db.js';
+import {PORT} from './config.js';
 
-const app = express()
+
+
+const app = express();
+app.use(bodyParser.json());
+
+
+//app.use(bodyParser.urlencoded({ extended: true }))
+
 //cross domain.
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', '"GET,PUT,PATCH,POST,DELETE"');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization");
   next();
 }
+//const winston2 = winston();
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.simple(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "logs/app.log" }),
+  ],
+});
+
+
+logger.log("info", "Request received en el body 1:",   "1");
+
+app.use(bodyParser.urlencoded({ extended: true }))
+logger.log("info", "Request received en el body 2:",   "2");
 
 app.use(allowCrossDomain);
 
@@ -18,9 +43,20 @@ app.use(allowCrossDomain);
 app.get('/alumnos', async (req, res) => {
   const [rows] = await pool.query('select idAlumno,Nombre,Apellido,last_update,substring(FechaNac,1,10) FechaNac,'+
   ' idSede,idCurso,Estado,Email,Sexo,coalesce(idprovincia,0) idprovincia,' +
-  ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos')
-  res.json(rows)
+  ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos');
+  res.json(rows);
 })
+
+app.post('/api/getusuario', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
+  res.json(rows);
+});
+
+app.post('/api/usuarios', async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM user');
+  res.json(rows);
+});
+
 
 app.get('/alumnos2', (req, res) => {
   
@@ -39,7 +75,7 @@ app.get('/alumnos2', (req, res) => {
   });
 });
 
-app.get('/usuarios', (req, res) => {
+app.get('/usuarios2', (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log(`usuarios ${connection.threadId}`);
@@ -53,9 +89,15 @@ app.get('/usuarios', (req, res) => {
   });
 });
 
-app.post('/api/getusuario', async (req, res) => {
-  const [rows] = await pool.query(`SELECT * FROM user WHERE Username="${req.body.usuario}"`)
-  res.json(rows)
+app.post('/api/getusuario23', async (req, res) => {
+
+  const [rows] =  await pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
+  logger.log({
+    level: 'info',
+    message: 'Hello distributed log files!' + req.body
+  });
+  res.json(rows);
+  //res.send({ status: req.body });
 });
 
 

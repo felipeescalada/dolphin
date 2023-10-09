@@ -9,7 +9,7 @@ import cors from 'cors';
 const app = express();
 app.use(bodyParser.json());
 
-
+//este es cors
 app.use(cors({
     origin: 'https://www.section.io'
 }));

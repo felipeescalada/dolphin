@@ -3,13 +3,16 @@ import winston from 'winston';
 import bodyParser from 'body-parser';
 import { pool } from './db.js';
 import {PORT} from './config.js';
-
+import cors from 'cors';
 
 
 const app = express();
 app.use(bodyParser.json());
 
 
+app.use(cors({
+    origin: 'https://www.section.io'
+}));
 //app.use(bodyParser.urlencoded({ extended: true }))
 
 //cross domain.

@@ -124,7 +124,23 @@ app.post('/api/getusuario2', (req, res) => {
 app.get('/', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM users')
   res.json(rows)
+
 })
+
+app.get('/terceros', async (req, res) => {
+
+  const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion '+
+    'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,'+
+    ' coalesce(idprovincia,0) idprovincia,' +
+    ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,'+
+     ' idlista from tercero');
+
+     res.json(rows);
+     
+  
+  });
+
+
 
 
 app.get('/ping', async (req, res) => {

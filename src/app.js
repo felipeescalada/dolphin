@@ -131,7 +131,7 @@ app.get('/terceros', async (req, res) => {
   });
 
   app.post('/productos', async (req, res) => {
-    const [rows] = await pool.query('select * from productos');
+    const [rows] = await pool.query('select * from productos order by item');
   
        res.json(rows);
   

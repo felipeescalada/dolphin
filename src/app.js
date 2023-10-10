@@ -1,15 +1,17 @@
 import express from 'express';
-import winston from 'winston';
 import bodyParser from 'body-parser';
 import { pool } from './db.js';
 import {PORT} from './config.js';
-
+import cors from 'cors';
 
 
 const app = express();
 app.use(bodyParser.json());
 
-
+//este es cors
+app.use(cors({
+    origin: '*'
+}));
 //app.use(bodyParser.urlencoded({ extended: true }))
 
 //cross domain.
@@ -21,20 +23,12 @@ var allowCrossDomain = function(req, res, next) {
   next();
 }
 //const winston2 = winston();
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.simple(),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "logs/app.log" }),
-  ],
-});
 
 
-logger.log("info", "Request received en el body 1:",   "1");
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
-logger.log("info", "Request received en el body 2:",   "2");
+
 
 app.use(allowCrossDomain);
 
@@ -92,10 +86,7 @@ app.get('/usuarios2', (req, res) => {
 app.post('/api/getusuario23', async (req, res) => {
 
   const [rows] =  await pool.query('SELECT * FROM user WHERE Username="' + req.body.usuario +'"');
-  logger.log({
-    level: 'info',
-    message: 'Hello distributed log files!' + req.body.usuario
-  });
+
   res.json(rows);
   //res.send({ status: req.body });
 });

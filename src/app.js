@@ -137,6 +137,18 @@ app.get('/terceros', async (req, res) => {
   
     
     });
+
+    app.post('/cajas', async (req, res) => {
+      console.log("cajas server");
+      const [rows] = await pool.query('select idcaja, nombre from  cajas');
+    
+         res.json(rows);
+    
+      
+      });
+  
+   
+
   
 
 

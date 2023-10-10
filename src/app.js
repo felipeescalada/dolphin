@@ -119,7 +119,6 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/terceros', async (req, res) => {
-
   const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion '+
     'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,'+
     ' coalesce(idprovincia,0) idprovincia,' +
@@ -127,7 +126,7 @@ app.get('/terceros', async (req, res) => {
      ' idlista from tercero');
 
      res.json(rows);
-     
+
   
   });
 

@@ -211,7 +211,7 @@ app.post('/cursos', async (req, res) => {
   res.json(rows);
 });
 
-     app.post('/proveedores', async (req, res) => {
+     app.get('/proveedores', async (req, res) => {
       console.log("cursos:" );
       const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion '+
       'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,'+

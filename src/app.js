@@ -193,7 +193,7 @@ app.post('/sedes', async (req, res) => {
     const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes');
     res.json(rows);
   } catch (error) {
-    console.error("Error al consultar la base de datos:", error);
+    console.error(" 1 Error al consultar la base de datos:", error);
     res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
   }
 });

@@ -211,7 +211,15 @@ app.post('/cursos', async (req, res) => {
   res.json(rows);
 });
 
-
+     app.post('/proveedores', async (req, res) => {
+      console.log("cursos:" );
+      const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion '+
+      'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,'+
+      ' coalesce(idprovincia,0) idprovincia,' +
+      ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,'+
+       ' idlista from tercero where idtercero in(select idtercero from tercat where idcategoria="PRO")' );
+      res.json(rows);
+    });
 
 
 

@@ -276,7 +276,7 @@ app.post('/getpais', async (req, res) => {
 
    
     var querysql ='';
-    console.log(`Conectado >>>fecht de pais: ${connection.threadId}`);
+   
     if  (req.body.codigo =="0")
     {
       querysql = 'select idpais iddato,nombre datonombre from pais;';

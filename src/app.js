@@ -158,6 +158,27 @@ app.post('/cajasmov', async (req, res) => {
 });
 
 
+app.post('/getprovincia', async (req, res) => {
+  console.log("get provincia");
+  const [rows] = await pool.query('select idprovincia iddato, nombre datonombre from provincia');
+  res.json(rows);
+});
+
+
+app.post('/getprovincia', async (req, res) => {
+  console.log("get provincia");
+  const [rows] = await pool.query('select idprovincia , nombre  from provincia');
+  res.json(rows);
+});
+
+
+app.post('/distrito', async (req, res) => {
+  console.log("get distrito");
+  const [rows] = await pool.query('select iddistrito,nombre from distrito where idprovincia =' + req.body.idprovincia);
+  res.json(rows);
+});
+
+
 
 
 

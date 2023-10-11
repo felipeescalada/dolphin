@@ -200,7 +200,7 @@ app.post('/sedes', async (req, res) => {
 
 app.post("/api/alumnos/update",async (req, res) => {
   try {
-    console.log("update:");
+    console.log("update##:" + req.body.ppais);
 var queryalumnos = "update alumnos set " +
 "Nombre='" + req.body.pNombre + "'," +
 "Apellido='" + req.body.pApellido + "'," +

@@ -188,9 +188,14 @@ app.post('/distrito', async (req, res) => {
 });
 
 app.post('/sedes', async (req, res) => {
-  console.log("sedes:" );
-  const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes' );
-  res.json(rows);
+  try {
+    console.log("sedes:");
+    const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes');
+    res.json(rows);
+  } catch (error) {
+    console.error("Error al consultar la base de datos:", error);
+    res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+  }
 });
 
 app.post('/sedes2', async (req, res) => {

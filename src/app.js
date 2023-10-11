@@ -138,6 +138,16 @@ app.post('/productos', async (req, res) => {
 
 });
 
+app.post('/paises', async (req, res) => {
+  const [rows] = await pool.query('select * from pais '
+  );
+
+  res.json(rows);
+
+
+});
+
+
 app.post('/cajas', async (req, res) => {
   console.log("cajas server");
   const [rows] = await pool.query('select idcaja, nombre from  cajas');

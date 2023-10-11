@@ -187,6 +187,21 @@ app.post('/distrito', async (req, res) => {
   res.json(rows);
 });
 
+app.post('/sedes', async (req, res) => {
+  console.log("sedes:" );
+  const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes' );
+  res.json(rows);
+});
+
+app.post('/sedes2', async (req, res) => {
+  console.log("sedes:" );
+  const [rows] = await pool.query('select idsede , nombre  from sedes' );
+  res.json(rows);
+});
+
+
+
+
 app.post('/corregimiento', async (req, res) => {
   console.log("get distrito");
   const [rows] = await pool.query('select idcorregimiento,nombre from corregimiento where iddistrito =' + req.body.iddistrito

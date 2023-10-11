@@ -274,7 +274,7 @@ app.post('/sedes2', async (req, res) => {
 
 app.post('/getpais', async (req, res) => {
 
-    if (err) throw err;
+   
     var querysql ='';
     console.log(`Conectado >>>fecht de pais: ${connection.threadId}`);
     if  (req.body.codigo =="0")

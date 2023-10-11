@@ -272,6 +272,26 @@ app.post('/sedes2', async (req, res) => {
   res.json(rows);
 });
 
+app.post('/getpais', async (req, res) => {
+
+    if (err) throw err;
+    var querysql ='';
+    console.log(`Conectado >>>fecht de pais: ${connection.threadId}`);
+    if  (req.body.codigo =="0")
+    {
+      querysql = 'select idpais iddato,nombre datonombre from pais;';
+      console.log('#sin definir');
+    }
+    else
+    {
+      querysql = 'select idpais ,nombre  from pais where idpais="' + req.body.codigo +'"';
+      console.log('#codigo pais:' + req.body.codigo);
+    }
+    const [rows] = await pool.query(querysql);
+    res.json(rows);
+
+});
+
 
 app.post('/cursos', async (req, res) => {
   console.log("cursos:");

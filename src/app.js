@@ -205,6 +205,14 @@ app.post('/sedes2', async (req, res) => {
 });
 
 
+app.post('/cursos', async (req, res) => {
+  console.log("cursos:" );
+  const [rows] = await pool.query('select idcurso iddato, nombre datonombre from cursos' );
+  res.json(rows);
+});
+
+
+
 
 
 app.post('/corregimiento', async (req, res) => {

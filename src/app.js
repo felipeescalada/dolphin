@@ -139,8 +139,7 @@ app.post('/productos', async (req, res) => {
 });
 
 app.post('/paises', async (req, res) => {
-  const [rows] = await pool.query('select * from pais '
-  );
+  const [rows] = await pool.query('select * from pais ');
 
   res.json(rows);
 
@@ -183,7 +182,7 @@ app.post('/getprovincia', async (req, res) => {
 
 
 app.post('/distrito', async (req, res) => {
-  console.log("get distrito");
+  console.log("get distrito:" + req.body.idprovincia);
   const [rows] = await pool.query('select iddistrito,nombre from distrito where idprovincia =' + req.body.idprovincia);
   res.json(rows);
 });

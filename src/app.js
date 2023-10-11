@@ -199,27 +199,37 @@ app.post('/sedes', async (req, res) => {
 });
 
 app.post('/sedes2', async (req, res) => {
-  console.log("sedes:" );
-  const [rows] = await pool.query('select idsede , nombre  from sedes' );
+  console.log("sedes:");
+  const [rows] = await pool.query('select idsede , nombre  from sedes');
   res.json(rows);
 });
 
 
 app.post('/cursos', async (req, res) => {
-  console.log("cursos:" );
-  const [rows] = await pool.query('select idcurso iddato, nombre datonombre from cursos' );
+  console.log("cursos:");
+  const [rows] = await pool.query('select idcurso iddato, nombre datonombre from cursos');
   res.json(rows);
 });
 
-     app.get('/proveedores', async (req, res) => {
-      console.log("cursos:" );
-      const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion '+
-      'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,'+
-      ' coalesce(idprovincia,0) idprovincia,' +
-      ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,'+
-       ' idlista from tercero where idtercero in(select idtercero from tercat where idcategoria="PRO")' );
-      res.json(rows);
-    });
+app.get('/proveedores', async (req, res) => {
+  console.log("cursos:");
+  const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion ' +
+    'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,' +
+    ' coalesce(idprovincia,0) idprovincia,' +
+    ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,' +
+    ' idlista from tercero where idtercero in(select idtercero from tercat where idcategoria="PRO")');
+  res.json(rows);
+});
+
+app.get('/profesores', async (req, res) => {
+  console.log("cursos:");
+  const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion ' +
+    'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,' +
+    ' coalesce(idprovincia,0) idprovincia,' +
+    ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,' +
+    ' idlista from tercero where idtercero in(select idtercero from tercat where idcategoria="PROF")');
+  res.json(rows);
+});
 
 
 

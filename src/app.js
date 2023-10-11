@@ -178,6 +178,14 @@ app.post('/distrito', async (req, res) => {
   res.json(rows);
 });
 
+app.post('/corregimiento', async (req, res) => {
+  console.log("get distrito");
+  const [rows] = await pool.query('select idcorregimiento,nombre from corregimiento where iddistrito =' + req.body.iddistrito
+  );
+  res.json(rows);
+});
+
+
 
 
 

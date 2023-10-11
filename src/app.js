@@ -158,7 +158,7 @@ app.post('/cajasmov', async (req, res) => {
 });
 
 
-app.post('/getprovincia', async (req, res) => {
+app.post('/provincia', async (req, res) => {
   console.log("get provincia");
   const [rows] = await pool.query('select idprovincia iddato, nombre datonombre from provincia');
   res.json(rows);

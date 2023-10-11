@@ -198,6 +198,33 @@ app.post('/sedes', async (req, res) => {
   }
 });
 
+app.post("/api/alumnos/update",async (req, res) => {
+  try {
+    console.log("update:");
+var queryalumnos = "update alumnos set " +
+"Nombre='" + req.body.pNombre + "'," +
+"Apellido='" + req.body.pApellido + "'," +
+"FechaNac='" + req.body.pFechaNac + "'," +
+"idSede='" + req.body.pidSede + "'," +
+"idCurso='" + req.body.pidCurso + "'," +
+"Estado='" + req.body.pEstado + "'," +
+"Email='" + req.body.pEmail + "'," +
+"Sexo='" + req.body.pSexo + "'," +
+"idprovincia='" + req.body.pidprovincia + "'," +
+"iddistrito='" + req.body.piddistrito + "'," +
+"idcorregimiento='" + req.body.pidcorregimiento + "'," +
+"Direccion='" + req.body.pDireccion + "'," +
+"telefono='" + req.body.ptelefono + "'," +
+"idpais='" + req.body.ppais + "'" +    
+ " where idAlumno=" + req.body.pidAlumno + ";";
+ const [rows] = await pool.query(queryalumnos);
+ res.json(rows);
+ } catch (error) {
+   console.error(" 1 Error al consultar la base de datos:", error);
+   res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+ }
+ });
+ 
 app.post("/api/alumnos/add", async (req, res) => {
   try {
     console.log("ADD:");

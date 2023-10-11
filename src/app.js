@@ -198,6 +198,47 @@ app.post('/sedes', async (req, res) => {
   }
 });
 
+app.post("/api/alumnos/add", async (req, res) => {
+  try {
+    console.log("ADD:");
+var queryalumnos = " insert into alumnos(" +
+"Nombre," +
+"Apellido," +
+"FechaNac," +
+"idSede," +
+"idCurso," +
+"Estado," +
+"Email," +
+"Sexo," +
+"idprovincia," +
+"iddistrito," +
+"idcorregimiento," +
+"Direccion," +
+"telefono,idpais" +
+") values ('" +
+req.body.pNombre + "','" +
+req.body.pApellido + "','" +
+req.body.pFechaNac + "','" +
+req.body.pidSede + "','" +
+req.body.pidCurso + "','" +
+req.body.pEstado + "','" +
+req.body.pEmail + "','" +
+req.body.pSexo + "','" +
+req.body.pidprovincia + "','" +
+req.body.piddistrito + "','" +
+req.body.pidcorregimiento + "','" +
+req.body.pDireccion + "','" +
+req.body.ptelefono + "','" +
+req.body.ppais + "')";
+const [rows] = await pool.query(queryalumnos);
+res.json(rows);
+} catch (error) {
+  console.error(" 1 Error al consultar la base de datos:", error);
+  res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+}
+});
+
+
 app.post('/sedes2', async (req, res) => {
   console.log("sedes:");
   const [rows] = await pool.query('select idsede , nombre  from sedes');

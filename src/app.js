@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import { pool } from './db.js';
 import { PORT } from './config.js';
 import cors from 'cors';
-
+import multer from 'multer';
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,6 +24,29 @@ var allowCrossDomain = function (req, res, next) {
 }
 //const winston2 = winston();
 
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './files/');
+  },
+  filename: (req, file, cb) => {
+    // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const uniqueSuffix = Date.now() + '-' + req.body.xfile;
+    const originalName = file.originalname;
+    const extension = originalName.split('.')[1];
+    cb(null, `${file.fieldname}-${uniqueSuffix}.${extension}`);
+  },
+});
+
+
+const fileUpload = multer({
+  storage: storage,
+  limits: {
+    // Establece el límite de tamaño en bytes (en este ejemplo, 10 megabytes)
+    fileSize: 10 * 1024 * 1024, // 10 MB
+  },
+});
 
 
 

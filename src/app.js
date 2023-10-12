@@ -48,6 +48,8 @@ const fileUpload = multer({
   },
 });
 
+const upload = multer({ storage: storage });
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -63,6 +65,11 @@ app.get('/alumnos', async (req, res) => {
     ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento,Direccion,telefono,idpais from alumnos');
   res.json(rows);
 })
+
+app.route("/test").post(upload.single("file"), function (req, res) {
+  console.log('fnombre:' + req.body.xfile);
+  res.send(req.file);
+});
 
 app.post('/api/getusuario', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');

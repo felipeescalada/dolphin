@@ -255,6 +255,18 @@ var queryalumnos = "update alumnos set " +
  }
  });
  
+ app.post("/query",async (req, res) => {
+  try {
+    console.log("req.body.##:" + req.body.pquery);
+
+ const [rows] = await pool.query(req.body.query);
+ res.json(rows);
+ } catch (error) {
+   console.error(" 1 Error al consultar la base de datos:", error);
+   res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+ }
+ });
+
 app.post("/api/alumnos/add", async (req, res) => {
   try {
     console.log("ADD:");

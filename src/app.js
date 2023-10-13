@@ -106,7 +106,7 @@ app.route("/test").post(
 
 );
 
-app.get('/imagen/:nombreImagen', async (req, res) => {
+app.get('/imagen/:nombreImagen',  (req, res) => {
   const nombreImagen = req.params.nombreImagen;
   const rutaImagen = join('/files/' , nombreImagen);
   console.error('comienza servir la imagen:');

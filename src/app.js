@@ -111,7 +111,8 @@ app.get('/imagen/:nombreImagen', async (req, res) => {
   const rutaImagen = join('/files/' , nombreImagen);
   console.error('comienza servir la imagen:');
   // Sirve la imagen al navegador
-  res.sendFile(rutaImagen);  try {
+  //res.sendFile(rutaImagen); 
+   try {
     console.error('ok-imagen:');
     // Sirve la imagen al navegador
     res.sendFile(rutaImagen);

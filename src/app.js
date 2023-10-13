@@ -111,7 +111,13 @@ app.get('/imagen/:nombreImagen', (req, res) => {
   const rutaImagen = join('/files/' , nombreImagen);
 
   // Sirve la imagen al navegador
-  res.sendFile(rutaImagen);
+  res.sendFile(rutaImagen);  try {
+    // Sirve la imagen al navegador
+    res.sendFile(rutaImagen);
+  } catch (error) {
+    console.error('Error al servir la imagen:', error);
+    res.status(500).send('Error al cargar la imagen');
+  }
 });
 
 app.post('/api/getusuario', async (req, res) => {

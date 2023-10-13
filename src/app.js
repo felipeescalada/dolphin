@@ -66,7 +66,7 @@ app.get('/alumnos', async (req, res) => {
   res.json(rows);
 })
 
-app.route("/data").post(upload.single("file"), function (req, res) {
+app.route("/test").post(upload.single("file"), function (req, res) {
   console.log('fnombre:' + req.body.xfile);
   res.send(req.file);
 });

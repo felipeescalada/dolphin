@@ -28,7 +28,7 @@ var allowCrossDomain = function (req, res, next) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './files/');
+    cb(null, './current-disk/files/');
   },
   filename: (req, file, cb) => {
     // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -67,6 +67,7 @@ app.get('/alumnos', async (req, res) => {
 })
 
 app.route("/test").post(
+ 
   upload.single("file"), function (req, res)
   {
   console.log('fnombre:' + req.body.xfile);

@@ -5,6 +5,7 @@ import { PORT } from './config.js';
 import cors from 'cors';
 import multer from 'multer';
 import fs from 'fs';
+import { join } from 'path';
 
 const directorioActual = process.cwd(); // Obtiene el directorio de trabajo actual
 
@@ -101,6 +102,14 @@ app.route("/test").post(
 
 
 );
+
+app.get('/imagen/:nombreImagen', (req, res) => {
+  const nombreImagen = req.params.nombreImagen;
+  const rutaImagen = join(__dirname, '/files/', nombreImagen);
+
+  // Sirve la imagen al navegador
+  res.sendFile(rutaImagen);
+});
 
 app.post('/api/getusuario', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');

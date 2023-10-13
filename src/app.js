@@ -25,7 +25,7 @@ fs.promises.readdir(directorioActual)
 
 const app = express();
 //const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+//const __dirname = dirname(__filename);
 
 app.use(bodyParser.json());
 
@@ -108,7 +108,7 @@ app.route("/test").post(
 
 app.get('/imagen/:nombreImagen', (req, res) => {
   const nombreImagen = req.params.nombreImagen;
-  const rutaImagen = join(__dirname, '/files/', nombreImagen);
+  const rutaImagen = join('/files/' , nombreImagen);
 
   // Sirve la imagen al navegador
   res.sendFile(rutaImagen);

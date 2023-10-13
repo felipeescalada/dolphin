@@ -4,7 +4,24 @@ import { pool } from './db.js';
 import { PORT } from './config.js';
 import cors from 'cors';
 import multer from 'multer';
+import fs from 'fs';
 
+const directorioActual = process.cwd(); // Obtiene el directorio de trabajo actual
+
+console.log(`Directorio actual: ${directorioActual}`);
+
+fs.promises.readdir(directorioActual)
+  .then((files) => {
+    console.log('Archivos y directorios en el directorio actual:');
+    files.forEach((file) => {
+      console.log(file);
+    });
+  })
+  .catch((err) => {
+    console.error('Error al leer el directorio:', err);
+  });
+
+  
 const app = express();
 app.use(bodyParser.json());
 

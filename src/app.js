@@ -53,7 +53,8 @@ const storage = multer.diskStorage({
     const uniqueSuffix = req.body.xfile;
     const originalName = file.originalname;
     const extension = originalName.split('.')[1];
-    cb(null, `${file.fieldname}-${uniqueSuffix}.${extension}`);
+    cb(null, `${file.fieldname}-${uniqueSuffix}`);
+    //cb(null, `${file.fieldname}-${uniqueSuffix}.${extension}`);
   },
 });
 

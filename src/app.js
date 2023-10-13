@@ -21,7 +21,7 @@ fs.promises.readdir(directorioActual)
     console.error('Error al leer el directorio:', err);
   });
 
-  
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -45,7 +45,7 @@ var allowCrossDomain = function (req, res, next) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './app/files/');
+    cb(null, '/files/');
   },
   filename: (req, file, cb) => {
     // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);

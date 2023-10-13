@@ -66,10 +66,21 @@ app.get('/alumnos', async (req, res) => {
   res.json(rows);
 })
 
-app.route("/test").post(upload.single("file"), function (req, res) {
+app.route("/test").post(
+  upload.single("file"), function (req, res)
+  {
   console.log('fnombre:' + req.body.xfile);
+  if (req.file) {
+    console.log('El archivo se ha subido correctamente.');
+    console.log('Ubicación de guardado: ' + req.file.path);
+  } else {
+    console.log('No se ha subido ningún archivo.');
+  }
   res.send(req.file);
-});
+  }
+
+
+);
 
 app.post('/api/getusuario', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');

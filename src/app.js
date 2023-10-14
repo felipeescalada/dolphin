@@ -127,7 +127,14 @@ app.post('/api/getusuario', async (req, res) => {
   res.json(rows);
 });
 
+
 app.post('/documentos', async (req, res) => {
+  const [rows] = await pool.query('select id,idtercero, tipodoc, path1, path2  from documentos;');
+  res.json(rows);
+});
+
+
+app.post('/familiares', async (req, res) => {
   const [rows] = await pool.query('select id,idtercero, tipodoc, path1, path2  from documentos;');
   res.json(rows);
 });

@@ -353,7 +353,7 @@ var queryalumnos = "update alumnos set " +
   try {
     console.log("req.body.#1#:" + req.body.pquery);
 
- const [rows] = await pool.query(req.body.query);
+ const [rows] = await pool.query(req.body.pquery);
  res.json(rows);
  } catch (error) {
    console.error(" 1 Error al consultar la base de datos:", error);

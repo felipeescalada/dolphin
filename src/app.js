@@ -312,7 +312,7 @@ app.post('/distrito', async (req, res) => {
 });
 
 app.post('/sedes2', async (req, res) => {
-  console.log("get distrito:" + req.body.idprovincia);
+  console.log("get sedes:" );
   const [rows] = await pool.query('select idsede , nombre  from sedes');
   res.json(rows);
 });

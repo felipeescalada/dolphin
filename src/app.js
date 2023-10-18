@@ -349,7 +349,7 @@ var queryalumnos = "update alumnos set " +
  }
  });
  
- app.post("/query",async (req, res) => {
+ app.post("/api/query",async (req, res) => {
   try {
     console.log("req.body.##:" + req.body.pquery);
 

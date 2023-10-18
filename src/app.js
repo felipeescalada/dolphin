@@ -351,7 +351,7 @@ var queryalumnos = "update alumnos set " +
  
  app.post("/api/query",async (req, res) => {
   try {
-    console.log("req.body.##:" + req.body.pquery);
+    console.log("req.body.#1#:" + req.body.pquery);
 
  const [rows] = await pool.query(req.body.query);
  res.json(rows);

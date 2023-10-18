@@ -234,6 +234,34 @@ app.post('/productos', async (req, res) => {
 
 });
 
+app.get('/paginaproductos', async (req, res) => {
+
+  console.log("get:" );
+  const { page, itemsPerPage, search } = req.query;
+  const offset = (page - 1) * itemsPerPage;
+  let query = 'SELECT * FROM productos';
+
+  if (search=="*") {
+     query += ` WHERE descripcion <> ''`; // Modifica esto según la estructura de tu base de datos
+  }
+  else
+  {
+    query += ` WHERE descripcion LIKE '%${search}%'`; 
+  }
+//query += ` WHERE descripcion LIKE '%${search}%'`; 
+  //query += ` ORDER BY item LIMIT ${offset}, ${itemsPerPage}`;
+  //query += ` ORDER BY item LIMIT 1, 20`;
+  console.log("------------");
+  console.log(query);
+  try {
+    const [rows] = await pool.query(query);
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+});
+
 app.post('/paises', async (req, res) => {
   const [rows] = await pool.query('select * from pais ');
 

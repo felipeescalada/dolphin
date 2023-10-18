@@ -311,6 +311,14 @@ app.post('/distrito', async (req, res) => {
   res.json(rows);
 });
 
+app.post('/sedes2', async (req, res) => {
+  console.log("get distrito:" + req.body.idprovincia);
+  const [rows] = await pool.query('select idsede , nombre  from sedes');
+  res.json(rows);
+});
+
+
+
 app.post('/sedes', async (req, res) => {
   try {
     console.log("sedes:");

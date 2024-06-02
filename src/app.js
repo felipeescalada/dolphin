@@ -89,6 +89,17 @@ app.get('/alumnos', async (req, res) => {
   res.json(rows);
 })
 
+app.post('/test23', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error del servidor');
+  }
+});
+ 
+
 app.route("/test").post(
  
   upload.single("file"), function (req, res)
@@ -121,6 +132,7 @@ app.get('/imagen/:nombreImagen',  (req, res) => {
     res.status(500).send('Error al cargar la imagen');
   }
 });
+
 
 app.post('/api/getusuario', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');

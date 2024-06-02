@@ -39,7 +39,7 @@ app.use(cors({
 var allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', '"GET,PUT,PATCH,POST,DELETE"');
-  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization");
   next();
 }
@@ -248,9 +248,7 @@ app.get('/paginaproductos', async (req, res) => {
   {
     query += ` WHERE descripcion LIKE '%${search}%'`; 
   }
-//query += ` WHERE descripcion LIKE '%${search}%'`; 
-  //query += ` ORDER BY item LIMIT ${offset}, ${itemsPerPage}`;
-  //query += ` ORDER BY item LIMIT 1, 20`;
+
   console.log("------------");
   console.log(query);
   try {
@@ -481,10 +479,12 @@ app.post('/corregimiento', async (req, res) => {
 
 
 app.get('/ping', async (req, res) => {
+  console.log("ping 2");
   const [result] = await pool.query(`SELECT "Server Dolphin ERP" as RESULT`);
   res.json(result[0])
 })
-app.get('/ping24', async (req, res) => {
+app.post('/ping24', async (req, res) => {
+  console.log("ping 3");
   const [result] = await pool.query(`SELECT "ERP Dolphin 2.0" as RESULT`);
   res.json(result[0])
 })

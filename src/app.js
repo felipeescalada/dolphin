@@ -484,7 +484,7 @@ app.get('/ping', async (req, res) => {
   const [result] = await pool.query(`SELECT "Server Dolphin ERP" as RESULT`);
   res.json(result[0])
 })
-app.get('/ping23', async (req, res) => {
+app.get('/ping24', async (req, res) => {
   const [result] = await pool.query(`SELECT "ERP Dolphin 2.0" as RESULT`);
   res.json(result[0])
 })

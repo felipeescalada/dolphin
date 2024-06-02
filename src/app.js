@@ -408,7 +408,7 @@ res.json(rows);
 });
 
 
-app.post('/sedes2', async (req, res) => {
+app.get('/sedes2', async (req, res) => {
   console.log("sedes:");
   const [rows] = await pool.query('select idsede , nombre  from sedes');
   res.json(rows);

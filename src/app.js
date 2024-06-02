@@ -8,7 +8,7 @@ import fs from 'fs';
 import { join } from 'path';
 
 const directorioActual = process.cwd(); // Obtiene el directorio de trabajo actual
-
+express.urlencoded({ extended: true });
 console.log(`Directorio actual: ${directorioActual}`);
 
 fs.promises.readdir(directorioActual)

@@ -481,12 +481,12 @@ app.post('/corregimiento', async (req, res) => {
 app.get('/ping', async (req, res) => {
   console.log("ping 2");
   const [result] = await pool.query(`SELECT "Server Dolphin ERP" as RESULT`);
-  res.json(result[0])
+  res.json(result[0]);
 })
 app.post('/ping24', async (req, res) => {
   console.log("ping 3");
   const [result] = await pool.query(`SELECT "ERP Dolphin 2.0" as RESULT`);
-  res.json(result[0])
+  res.json(result[0]);
 })
 
 

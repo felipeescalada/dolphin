@@ -89,7 +89,8 @@ app.get('/alumnos', async (req, res) => {
   res.json(rows);
 })
 
-app.post('/test23', async (req, res) => {
+
+app.route("/test").post( async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
     res.json(rows);

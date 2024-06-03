@@ -90,7 +90,7 @@ app.get('/alumnos', async (req, res) => {
 })
 
 
-app.route("/test").post( async (req, res) => {
+app.route("/test234").post( async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
     res.json(rows);

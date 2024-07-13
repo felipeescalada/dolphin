@@ -134,9 +134,15 @@ app.get('/imagen/:nombreImagen',  (req, res) => {
   }
 });
 
-
-app.post('/api/getusuario', async (req, res) => {
+//app.route("/test").post(
+ 
+app.route('/api/getusuario').post( async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user WHERE Username="felipe"');
+  res.json(rows);
+});
+
+app.route('/api/getclientes').get( async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM Clientes');
   res.json(rows);
 });
 
@@ -482,12 +488,6 @@ app.post('/corregimiento', async (req, res) => {
   );
   res.json(rows);
 });
-
-
-
-
-
-
 
 
 

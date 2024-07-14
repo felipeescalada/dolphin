@@ -152,6 +152,12 @@ app.route('/api/get_recent_files').get( async (req, res) => {
 });
 
 
+app.route('/api/get_oficiales').get( async (req, res) => {
+  const [rows] = await pool.query('SELECT * FROM OficialesDeRelacion');
+  res.json(rows);
+});
+
+
 app.post('/documentos', async (req, res) => {
   const [rows] = await pool.query('select id,idtercero, tipodoc, path1, path2  from documentos;');
   res.json(rows);

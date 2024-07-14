@@ -183,7 +183,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
     const { estado } = req.body;
     const { id } = req.params;
     console.log('llega post1:' + req.params.id);
-	console.log('llega post2:' + req.body);
+
 	console.log('llega post3:' + estado);
      try {
         console.log("ADD recent:");

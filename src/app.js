@@ -158,6 +158,23 @@ app.route('/api/get_oficiales').get( async (req, res) => {
 });
 
 
+
+  app.route("/recent-files").post( async (req, res) => {
+	console.log("Inser leeds...");
+	
+	 try {
+      console.log("ADD:");
+      var query23 = "INSERT INTO recent_files (icon, title,  size) VALUES  ('"+ req.body.icon +"','" + req.body.title+"','" + req.body.size+"')" ;
+   
+  const [rows] = await pool.query(query23);
+  res.json(rows);
+  } catch (error) {
+    console.error(" 1 Error al consultar la base de datos:", error);
+    res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+  }
+  });
+
+
 app.post('/documentos', async (req, res) => {
   const [rows] = await pool.query('select id,idtercero, tipodoc, path1, path2  from documentos;');
   res.json(rows);

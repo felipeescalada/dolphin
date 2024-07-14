@@ -163,7 +163,7 @@ app.route('/api/get_oficiales').get( async (req, res) => {
 	console.log("Inser leeds...");
 	
 	 try {
-      console.log("ADD:");
+      console.log("ADD recent:");
       var query23 = "INSERT INTO recent_files (icon, title,  size) VALUES  ('"+ req.body.icon +"','" + req.body.title+"','" + req.body.size+"')" ;
    
   const [rows] = await pool.query(query23);

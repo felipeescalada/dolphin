@@ -157,7 +157,11 @@ app.route('/api/get_oficiales').get( async (req, res) => {
   res.json(rows);
 });
 
-
+;
+app.route('/api/getclientes_selector').get( async (req, res) => {
+  const [rows] = await pool.query("select  idcliente iddato, nombre datonombre  from Clientes");
+  res.json(rows);
+});
 
   app.route("/recent-files").post( async (req, res) => {
 	console.log("Inser leeds...");

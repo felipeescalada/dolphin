@@ -188,7 +188,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
      try {
         console.log("ADD recent:");
 
-        const result23 = 'UPDATE recent_files SET estado = '+ estado +' WHERE id = ' + id;
+        const result23 = 'UPDATE recent_files SET estado = "'+ estado +'" WHERE id = ' + id;
      
     const [rows] = await pool.query(result23);
     res.json(rows);

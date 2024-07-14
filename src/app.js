@@ -178,6 +178,43 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
   }
   });
 
+  app.route("/api/update-status/:id").post( async (req, res) => {
+    console.log("Inser leeds...");
+    const { estado } = req.body;
+    const { id } = req.params;
+    console.log('llega post1:' + req.params.id);
+	console.log('llega post2:' + req.body);
+	console.log('llega post3:' + estado);
+     try {
+        console.log("ADD recent:");
+        request.input('estado', sql.VarChar, estado);
+        request.input('id', sql.Int, id);
+        const result23 = await request.query('UPDATE recent_files SET estado = @estado WHERE id = @id');
+     
+    const [rows] = await pool.query(result23);
+    res.json(rows);
+    } catch (error) {
+      console.error(" 1 Error al consultar la base de datos:", error);
+      res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+    }
+    });
+
+  /*
+app.post('/update-status/:id', async (req, res) => {
+    const { estado } = req.body;
+    const { id } = req.params;
+    console.log('llega post1:' + req.params.id);
+	console.log('llega post2:' + req.body);
+	console.log('llega post3:' + estado);
+	
+    try {
+        await sql.connect(dbConfig);
+        const request = new sql.Request();
+        request.input('estado', sql.VarChar, estado);
+        request.input('id', sql.Int, id);
+        const result = await request.query('UPDATE recent_files SET estado = @estado WHERE id = @id');
+  */
+
 
 app.post('/documentos', async (req, res) => {
   const [rows] = await pool.query('select id,idtercero, tipodoc, path1, path2  from documentos;');

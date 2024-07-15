@@ -157,7 +157,7 @@ app.route('/api/get_creditos').get( async (req, res) => {
 });
 
 app.route('/api/get_preaprobados').get( async (req, res) => {
-  let query23 = 'select crm_NUMCRED,crm_NUM_CTE,crm_NOMBRECLIENTE Producto, crm_importe from Creditos c ' +
+  let query23 = 'select crm_NUMCRED,crm_NUM_CTE,crm_NOMBRECLIENTE , crm_importe from Creditos c ' +
               'where crm_tipo_linea ="PAprobado"';
   
 

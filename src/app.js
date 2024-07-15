@@ -152,7 +152,7 @@ app.route('/api/get_recent_files').get( async (req, res) => {
 });
 
 app.route('/api/get_creditos').get( async (req, res) => {
-  const [rows] = await pool.query('SELECT * FROM Creditos');
+  const [rows] = await pool.query('SELECT * FROM Creditos where crm_tipo_linea <>"PAprobado"' );
   res.json(rows);
 });
 
@@ -203,8 +203,8 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
      try {
         console.log("ADD recent:");
 
-        const result23 = 'UPDATE recent_files SET estado = "'+ estado +'" WHERE id = ' + id;
-     
+        //const result23 = 'UPDATE recent_files SET estado = "'+ estado +'" WHERE id = ' + id;
+        const result23 = `UPDATE recent_files SET estado = '${estado}', FechaCierre = NOW() WHERE id = ${id}`;
     const [rows] = await pool.query(result23);
     res.json(rows);
     } catch (error) {

@@ -203,6 +203,20 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
   }
   });
 
+  app.route("/api/registraCliente").post( async (req, res) => {
+    console.log("Insertando cliente...");
+
+  const { idCliente, nombre, direccion, telefono, email, fechaRegistro } = req.body;
+  
+  try {
+    const query = "INSERT INTO Clientes (idCliente, nombre, direccion, telefono, email, fechaRegistro) VALUES (?, ?, ?, ?, ?, ?)";
+    const [rows] = await pool.query(query, [idCliente, nombre, direccion, telefono, email, fechaRegistro]);
+    res.json({ success: true, message: "Cliente registrado con éxito", data: rows });
+  } catch (error) {
+    console.error("Error al registrar el cliente:", error);
+    res.status(500).json({ success: false, message: "Ocurrió un error al procesar la solicitud.", error: error.message });
+  }
+    });
   app.route("/api/update-status/:id").post( async (req, res) => {
     console.log("Inser leeds...");
     const { estado } = req.body;

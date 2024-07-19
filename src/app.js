@@ -157,7 +157,7 @@ app.route("/api/getonecliente/:id").get( async (req, res) => {
   });
 
 app.route('/api/get_recent_files').get( async (req, res) => {
-  const [rows] = await pool.query('SELECT * FROM recent_files');
+  const [rows] = await pool.query('SELECT *,TIMESTAMPDIFF(MINUTE, `date`, NOW()) AS minutos FROM recent_files');
   res.json(rows);
 });
 

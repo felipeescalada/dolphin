@@ -193,7 +193,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
 	
 	 try {
       console.log("ADD recent:");
-      var query23 = "INSERT INTO recent_files (icon, title,  size) VALUES  ('"+ req.body.icon +"','" + req.body.title+"','" + req.body.size+"')" ;
+      var query23 = "INSERT INTO recent_files (icon, title,  size,idCliente) VALUES  ('"+ req.body.icon +"','" + req.body.title+"','" + req.body.size+"'," + + req.body.cliente +")" ;
    
   const [rows] = await pool.query(query23);
   res.json(rows);

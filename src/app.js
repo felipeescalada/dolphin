@@ -209,7 +209,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
   const { idCliente, nombre, direccion, telefono, email, fechaRegistro } = req.body;
   
   try {
-    const query = "INSERT INTO Clientes ( nombre, direccion, telefono, email, fechaRegistro) VALUES (?, ?, ?, ?, ?, ?)";
+    const query = "INSERT INTO Clientes ( nombre, direccion, telefono, email, fechaRegistro) VALUES ( ?, ?, ?, ?, ?)";
     const [rows] = await pool.query(query, [ nombre, direccion, telefono, email, fechaRegistro]);
     res.json({ success: true, message: "Cliente registrado con éxito", data: rows });
   } catch (error) {

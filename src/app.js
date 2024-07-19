@@ -146,6 +146,16 @@ app.route('/api/getclientes').get( async (req, res) => {
   res.json(rows);
 });
 
+app.route("/api/getonecliente/:id").get( async (req, res) => {
+  console.log("get one client...");
+
+  const { id } = req.params;
+  console.log('llega post1:' + req.params.id);
+  const [rows] = await pool.query(`SELECT * FROM Clientes where IDCliente = ${id}`);
+
+  res.json(rows);
+  });
+
 app.route('/api/get_recent_files').get( async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM recent_files');
   res.json(rows);

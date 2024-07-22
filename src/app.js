@@ -188,7 +188,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
   res.json(rows);
 });
 
-  app.route("/api/recent-files23").post( async (req, res) => {
+  /*app.route("/api/recent-files23").post( async (req, res) => {
 	console.log("Inser leeds...");
 	
 	 try {
@@ -201,7 +201,26 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
     console.error(" 1 Error al consultar la base de datos:", error);
     res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
   }
-  });
+  });*/
+  app.route("/api/recent-files23").post(async (req, res) => {
+    console.log("Inser leeds...");
+
+    try {
+        console.log("ADD recent:");
+        
+        // Define la consulta SQL con marcadores de posición
+        const query23 = "INSERT INTO recent_files (icon, title, size, idCliente) VALUES (?, ?, ?, ?)";
+
+        // Ejecuta la consulta usando parámetros
+        const [rows] = await pool.query(query23, [req.body.icon, req.body.title, req.body.size, req.body.cliente]);
+
+        // Envía la respuesta
+        res.json(rows);
+    } catch (error) {
+        console.error("1 Error al consultar la base de datos:", error);
+        res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+    }
+});
 
   app.route("/api/registraCliente").post( async (req, res) => {
     console.log("Insertando cliente...");

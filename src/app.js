@@ -207,7 +207,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
 
     try {
         console.log("ADD recent:");
-        
+        console.log("ADD recent2:");
         // Define la consulta SQL con marcadores de posición
         const query23 = "INSERT INTO recent_files (icon, title, size, idCliente) VALUES (?, ?, ?, ?)";
 

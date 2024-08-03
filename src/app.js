@@ -202,6 +202,17 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
     res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
   }
   });*/
+  app.route('/proveedores').post( async (req, res) => {
+    console.log("proveedores:");
+    const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion ' +
+      'idciudad,naturaleza,autoretenedor,estado,pnombre,snombre,papellido,sapellido,' +
+      ' coalesce(idprovincia,0) idprovincia,' +
+      ' coalesce(iddistrito,0) iddistrito,coalesce(idcorregimiento,0) idcorregimiento ,' +
+      ' idlista from tercero where idtercero in(select idtercero from tercat where idcategoria="PRO")');
+      console.log("proveedores:" + rows.length);
+    res.json(rows);
+  });
+
   app.route("/api/recent-files23").post(async (req, res) => {
     console.log("Inser leeds...");
 

@@ -213,6 +213,19 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
     res.json(rows);
   });
 
+  app.route("/api/query").post( async (req, res) => {
+    try {
+      console.log("req.body.#1#:" + req.body.pquery);
+  
+   const [rows] = await pool.query(req.body.pquery);
+   res.json(rows);
+   } catch (error) {
+     console.error(" 1 Error al consultar la base de datos:", error);
+     res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+   }
+   });
+
+
   app.route("/api/recent-files23").post(async (req, res) => {
     console.log("Inser leeds...");
 

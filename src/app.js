@@ -215,7 +215,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
 
   app.route("/api/query").post( async (req, res) => {
     try {
-      console.log("req.body.#1#:" + req.body.pquery);
+      console.log("#LLega query#:" + req.body.pquery);
   
    const [rows] = await pool.query(req.body.pquery);
    res.json(rows);

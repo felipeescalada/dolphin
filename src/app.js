@@ -188,20 +188,7 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
   res.json(rows);
 });
 
-  /*app.route("/api/recent-files23").post( async (req, res) => {
-	console.log("Inser leeds...");
-	
-	 try {
-      console.log("ADD recent:");
-      var query23 = "INSERT INTO recent_files (icon, title,  size,idCliente) VALUES  ('"+ req.body.icon +"','" + req.body.title+"','" + req.body.size+"'," + + req.body.cliente +")" ;
-   
-  const [rows] = await pool.query(query23);
-  res.json(rows);
-  } catch (error) {
-    console.error(" 1 Error al consultar la base de datos:", error);
-    res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
-  }
-  });*/
+
   app.route('/proveedores').post( async (req, res) => {
     console.log("proveedores:");
     const [rows] = await pool.query('select idtercero,razonsocial,nit,direccionfiscal,direccion ' +
@@ -213,6 +200,108 @@ app.route('/api/getclientes_selector').get( async (req, res) => {
     res.json(rows);
   });
 
+app.route('/sedes2').post( async (req, res) => {
+  console.log("get sedes:" );
+  const [rows] = await pool.query('select idsede , nombre  from sedes');
+  res.json(rows);
+});
+
+
+
+app.route('/sedes').post( async (req, res) => {
+  try {
+    console.log("sedes:");
+    const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes');
+    res.json(rows);
+  } catch (error) {
+    console.error(" 1 Error al consultar la base de datos:", error);
+    res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+  }
+});
+
+app.post('/provincia', async (req, res) => {
+  console.log("get provincia");
+  const [rows] = await pool.query('select idprovincia iddato, nombre datonombre from provincia');
+  res.json(rows);
+});
+
+
+app.route('/getprovincia').post( async (req, res) => {
+  console.log("get provincia");
+  const [rows] = await pool.query('select idprovincia , nombre  from provincia');
+  res.json(rows);
+});
+
+
+app.route('/distrito').post( async (req, res) => {
+  console.log("get distrito:" + req.body.idprovincia);
+  const [rows] = await pool.query('select iddistrito,nombre from distrito where idprovincia =' + req.body.idprovincia);
+  res.json(rows);
+});
+
+app.route('/sedes2').post( async (req, res) => {
+  console.log("get sedes:" );
+  const [rows] = await pool.query('select idsede , nombre  from sedes');
+  res.json(rows);
+});
+
+
+
+app.route('/sedes').post( async (req, res) => {
+  try {
+    console.log("sedes:");
+    const [rows] = await pool.query('select idsede iddato, nombre datonombre from sedes');
+    res.json(rows);
+  } catch (error) {
+    console.error(" 1 Error al consultar la base de datos:", error);
+    res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+  }
+});
+
+app.route("/api/alumnos/update").post( async (req, res) => {
+  try {
+    console.log("update##:" + req.body.ppais);
+var queryalumnos = "update alumnos set " +
+"Nombre='" + req.body.pNombre + "'," +
+"Apellido='" + req.body.pApellido + "'," +
+"FechaNac='" + req.body.pFechaNac + "'," +
+"idSede='" + req.body.pidSede + "'," +
+"idCurso='" + req.body.pidCurso + "'," +
+"Estado='" + req.body.pEstado + "'," +
+"Email='" + req.body.pEmail + "'," +
+"Sexo='" + req.body.pSexo + "'," +
+"idprovincia='" + req.body.pidprovincia + "'," +
+"iddistrito='" + req.body.piddistrito + "'," +
+"idcorregimiento='" + req.body.pidcorregimiento + "'," +
+"Direccion='" + req.body.pDireccion + "'," +
+"telefono='" + req.body.ptelefono + "'," +
+"idpais='" + req.body.ppais + "'" +    
+ " where idAlumno=" + req.body.pidAlumno + ";";
+ const [rows] = await pool.query(queryalumnos);
+ res.json(rows);
+ } catch (error) {
+   console.error(" 1 Error al consultar la base de datos:", error);
+   res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
+ }
+ });
+/*
+// Middleware para verificar el token
+const verifyToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+  
+  if (!token || token !== 'YOUR_SECRET_TOKEN') {
+    return res.status(403).send('Forbidden');
+  }
+  
+  next();
+};
+
+// Ruta protegida
+app.post('/delicate-operation', verifyToken, (req, res) => {
+  // Lógica delicada aquí
+  res.send('Operación realizada con éxito');
+});
+*/
   app.route("/api/query").post( async (req, res) => {
     try {
       console.log("#LLega query#:" + req.body.pquery);

@@ -519,7 +519,21 @@ app.get('/paginaproductos', async (req, res) => {
 });
 
 app.post('/paises', async (req, res) => {
+
+  const { codigo } = req.body;
+  console.log()
   const [rows] = await pool.query('select * from pais where idpais  > 2');
+
+  res.json(rows);
+
+
+});
+//'SELECT * FROM productos'
+app.post('/getpais', async (req, res) => {
+
+  const { codigo } = req.body;
+  console.log()
+  const [rows] = await pool.query(`select * from pais where idpais=${codigo}`);
 
   res.json(rows);
 

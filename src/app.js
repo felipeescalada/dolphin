@@ -398,12 +398,12 @@ app.post('/familiares', async (req, res) => {
 });
 
 
-
+/*
 
 app.post('/api/usuarios', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM user');
   res.json(rows);
-});
+});*/
 
 
 app.get('/alumnos2', (req, res) => {
@@ -519,7 +519,7 @@ app.get('/paginaproductos', async (req, res) => {
 });
 
 
-app.post('/usuarios', async (req, res) => {
+app.post('/api/usuarios', async (req, res) => {
   console.log("get ");
   const [rows] = await pool.query('select * from usuarios');
   res.json(rows);

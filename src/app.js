@@ -518,6 +518,13 @@ app.get('/paginaproductos', async (req, res) => {
   }
 });
 
+
+app.post('/usuarios', async (req, res) => {
+  console.log("get ");
+  const [rows] = await pool.query('select * from usuarios');
+  res.json(rows);
+});
+
 app.post('/paises', async (req, res) => {
 
   const { codigo } = req.body;

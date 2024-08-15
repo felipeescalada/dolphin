@@ -373,7 +373,7 @@ app.post('/delicate-operation', verifyToken, (req, res) => {
   const { email, voto } = req.body;
 
   if (!email || !voto) {
-    return res.status(400).send('Faltan parámetros.');
+    return res.status(400).send('Faltan parámetros Del voto:' + req.body);
   }
 
   try {

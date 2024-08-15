@@ -368,7 +368,7 @@ app.post('/delicate-operation', verifyToken, (req, res) => {
       res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
     }
     });
-    app.route("/api/votar").post( async (req, res) => {
+    app.route("/api/votar").get( async (req, res) => {
     //app.get('/votar', async (req, res) => {
   const { email, voto } = req.query;
 

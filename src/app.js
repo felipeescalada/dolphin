@@ -368,7 +368,23 @@ app.post('/delicate-operation', verifyToken, (req, res) => {
       res.status(500).json({ error: "Ocurrió un error al procesar la solicitud." });
     }
     });
+    app.route("/api/votar").post( async (req, res) => {
+    //app.get('/votar', async (req, res) => {
+  const { email, voto } = req.query;
 
+  if (!email || !voto) {
+    return res.status(400).send('Faltan parámetros.');
+  }
+
+  try {
+    const [rows] = await pool.query('INSERT INTO votos (email, voto) VALUES (?, ?)', [email, voto]);
+    console.log(`El cliente con email ${email} votó con un ${voto}`);
+    res.send('¡Gracias por tu voto!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al procesar el voto.');
+  }
+});
   /*
 app.post('/update-status/:id', async (req, res) => {
     const { estado } = req.body;
